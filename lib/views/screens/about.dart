@@ -1,4 +1,5 @@
 import 'package:expanse_manager/views/screens/signin_page.dart';
+import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,10 +14,7 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("About"),
-        centerTitle: true,
-      ),
+      appBar: getCustomAppBar(title: "About"),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
         child: Column(
@@ -81,6 +79,21 @@ class _AboutPageState extends State<AboutPage> {
                       // color: Colors.amber,
                       child: const Text(
                         "Share",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18,
+                        ),
+                      ),
+                      height: Get.height * .06,
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(color: Color(0xffdbdbdb)))),
+                      alignment: Alignment.center,
+                      // color: Colors.amber,
+                      child: const Text(
+                        "Donate",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 18,

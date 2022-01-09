@@ -1,3 +1,4 @@
+import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -10,6 +11,9 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: getCustomAppBar(title: "Sign Up"),
+      body: Container(),
+    );
   }
 }

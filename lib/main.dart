@@ -2,6 +2,7 @@ import 'package:expanse_manager/views/screens/about.dart';
 import 'package:expanse_manager/views/screens/category_page.dart';
 import 'package:expanse_manager/views/screens/home_page.dart';
 import 'package:expanse_manager/views/screens/report_page.dart';
+import 'package:expanse_manager/views/screens/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -41,13 +42,20 @@ class _LandingPageState extends State<LandingPage> {
       context,
       screens: [
         HomePage(),
+        TodoPage(),
         CategoryPage(),
         ReportPage(),
         AboutPage(),
       ],
       items: [
         PersistentBottomNavBarItem(
-            icon: Icon(Icons.home_rounded), title: "Home"),
+          icon: Icon(Icons.home_rounded),
+          title: "Home",
+        ),
+        PersistentBottomNavBarItem(
+          icon: Icon(Icons.checklist),
+          title: "Todo",
+        ),
         PersistentBottomNavBarItem(
             icon: Icon(Icons.category_rounded), title: "Categories"),
         PersistentBottomNavBarItem(icon: Icon(Icons.print), title: "Report"),

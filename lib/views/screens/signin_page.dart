@@ -1,3 +1,4 @@
+import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
@@ -11,10 +12,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Sign In"),
-        centerTitle: true,
-      ),
+      appBar: getCustomAppBar(title: "Sign In"),
       body: Container(),
     );
   }

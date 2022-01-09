@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:expanse_manager/app/controllers/HomeController.dart';
+import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -28,10 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Expanse'),
-        centerTitle: true,
-      ),
+      appBar: getCustomAppBar(title: "Expanse Manager"),
       body: Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         padding: const EdgeInsets.symmetric(horizontal: 16),

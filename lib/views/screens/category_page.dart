@@ -1,4 +1,5 @@
 import 'package:expanse_manager/app/extensions/color_extension.dart';
+import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -12,10 +13,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Categories"),
-        centerTitle: true,
-      ),
+      appBar: getCustomAppBar(title: "Categories"),
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
