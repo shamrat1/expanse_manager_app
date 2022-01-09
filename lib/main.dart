@@ -1,5 +1,10 @@
+import 'package:expanse_manager/views/screens/about.dart';
+import 'package:expanse_manager/views/screens/category_page.dart';
 import 'package:expanse_manager/views/screens/home_page.dart';
+import 'package:expanse_manager/views/screens/report_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,59 +16,44 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: LandingPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class LandingPage extends StatefulWidget {
+  LandingPage({Key? key, this.currentIndex = 0}) : super(key: key);
+  int currentIndex;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _LandingPageState createState() => _LandingPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    return PersistentTabView(
+      context,
+      screens: [
+        HomePage(),
+        CategoryPage(),
+        ReportPage(),
+        AboutPage(),
+      ],
+      items: [
+        PersistentBottomNavBarItem(
+            icon: Icon(Icons.home_rounded), title: "Home"),
+        PersistentBottomNavBarItem(
+            icon: Icon(Icons.category_rounded), title: "Categories"),
+        PersistentBottomNavBarItem(icon: Icon(Icons.print), title: "Report"),
+        PersistentBottomNavBarItem(
+            icon: Icon(Icons.info_outline_rounded), title: "About"),
+      ],
     );
   }
 }
