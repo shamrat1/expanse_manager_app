@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:expanse_manager/app/controllers/HomeController.dart';
+import 'package:expanse_manager/views/screens/todo.dart';
+import 'package:expanse_manager/views/screens/transactions_page.dart';
 import 'package:expanse_manager/views/widgets/custom_appbar.dart';
+import 'package:expanse_manager/views/widgets/transaction_item_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -45,6 +48,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   height: Get.height * .30,
                   width: Get.width,
+                  // color: Colors.amber,
                   child: _buildAnimationSplineChart(),
                 ),
                 Container(
@@ -112,40 +116,46 @@ class _HomePageState extends State<HomePage> {
                   }),
                 ),
                 Container(
-                    height:
-                        Get.height * .60 - MediaQuery.of(context).padding.top,
-                    width: Get.width,
-                    // color: Colors.greenAccent,
-                    child: ListView.builder(
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          // ignore: prefer_const_constructors
-                          return ListTile(
-                            title: const Text("Something"),
-                            subtitle: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 3,
-                                    horizontal: 10,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.amber,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Text(
-                                    "Cate",
-                                    style: TextStyle(fontSize: 9),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            trailing: const Text(
-                              "3 Days Ago",
-                              style: TextStyle(color: Color(0xffdbdbdb)),
-                            ),
-                          );
-                        })),
+                  margin: EdgeInsets.symmetric(vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Recent Income and expanses",
+                        style: TextStyle(
+                          color: Color(0xffdbdbdb),
+                          fontSize: 14,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => Get.to(TransactionsPage()),
+                        child: const Text(
+                          "View",
+                          style:
+                              TextStyle(color: Color(0xffdbdbdb), fontSize: 14),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  // height: Get.height * .60 - MediaQuery.of(context).padding.top,
+                  width: Get.width,
+                  // color: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      for (var i = 0; i < 4; i++)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: TransactionItemTile(
+                            type: i % 2 == 0
+                                ? TransactionType.INCOME
+                                : TransactionType.EXPANSE,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
               ],
             ),
           );
@@ -154,40 +164,49 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /// get the random value
-  int _getRandomInt(int min, int max) {
-    final Random random = Random();
-    return min + random.nextInt(max - min);
-  }
-
   /// get the spline chart sample with dynamically updated data points.
   SfCartesianChart _buildAnimationSplineChart() {
     return SfCartesianChart(
-        plotAreaBorderWidth: 0,
-        primaryXAxis:
-            NumericAxis(majorGridLines: const MajorGridLines(width: 0)),
-        primaryYAxis: NumericAxis(
-            majorTickLines: const MajorTickLines(color: Colors.transparent),
-            axisLine: const AxisLine(width: 0),
-            minimum: 0,
-            maximum: 100),
-        series: _getDefaultSplineSeries());
+      plotAreaBorderWidth: 0,
+      // backgroundColor: Colors.amber,
+      title: ChartTitle(text: "Monthly Income Expanse View"),
+      primaryXAxis: NumericAxis(
+          majorGridLines: const MajorGridLines(width: 0), isVisible: false),
+      primaryYAxis: NumericAxis(
+        majorTickLines: const MajorTickLines(color: Colors.transparent),
+        axisLine: const AxisLine(width: 0),
+        minimum: 0,
+        maximum: 10000,
+        isVisible: false,
+      ),
+
+      // palette: [
+      //   Colors.blue.shade300,
+      //   Colors.red.shade300,
+      // ],
+      series: _getDefaultSplineSeries(),
+    );
   }
 
   /// get the spline series sample with dynamically updated data points.
-  List<SplineSeries<_ChartData, num>> _getDefaultSplineSeries() {
-    return <SplineSeries<_ChartData, num>>[
-      SplineSeries<_ChartData, num>(
-        dataSource: _incomeData!,
-        xValueMapper: (_ChartData sales, _) => sales.x,
-        yValueMapper: (_ChartData sales, _) => sales.y,
-        markerSettings: const MarkerSettings(isVisible: true),
-      ),
-      SplineSeries<_ChartData, num>(
+  List<AreaSeries<_ChartData, num>> _getDefaultSplineSeries() {
+    return <AreaSeries<_ChartData, num>>[
+      AreaSeries<_ChartData, num>(
+          color: Colors.blue.withOpacity(0.5),
+          dataSource: _incomeData!,
+          xValueMapper: (_ChartData sales, _) => sales.x,
+          yValueMapper: (_ChartData sales, _) => sales.y,
+          markerSettings: const MarkerSettings(isVisible: false),
+          onPointTap: (ChartPointDetails details) {
+            Get.snackbar("Income", details.pointIndex.toString(),
+                snackPosition: SnackPosition.BOTTOM);
+          }),
+      AreaSeries<_ChartData, num>(
+        color: Colors.red.withOpacity(0.5),
         dataSource: _expanseData!,
         xValueMapper: (_ChartData sales, _) => sales.x,
         yValueMapper: (_ChartData sales, _) => sales.y,
-        markerSettings: const MarkerSettings(isVisible: true),
+        markerSettings: const MarkerSettings(isVisible: false),
       ),
     ];
   }
@@ -201,13 +220,33 @@ class _HomePageState extends State<HomePage> {
 
   //Get the random data points
   void _getChartData() {
+    var income = 7500;
+    var expanses = [
+      20,
+      30,
+      500,
+      700,
+      163,
+      5,
+      1600,
+      20,
+      30,
+      500,
+      700,
+      163,
+      5,
+      1600
+    ];
+
     _incomeData = <_ChartData>[];
-    for (int i = 0; i < 11; i++) {
-      _incomeData!.add(_ChartData(i, _getRandomInt(15, 85)));
-    }
+    var totalExpanse = 0;
     _expanseData = <_ChartData>[];
-    for (int i = 0; i < 11; i++) {
-      _expanseData!.add(_ChartData(i, _getRandomInt(5, 80)));
+
+    for (int i = 0; i < expanses.length; i++) {
+      income = income - expanses[i];
+      totalExpanse += expanses[i];
+      _incomeData!.add(_ChartData(i, income));
+      _expanseData!.add(_ChartData(i, totalExpanse));
     }
   }
 }
