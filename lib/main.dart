@@ -2,6 +2,7 @@ import 'package:expanse_manager/views/screens/about.dart';
 import 'package:expanse_manager/views/screens/category_page.dart';
 import 'package:expanse_manager/views/screens/home_page.dart';
 import 'package:expanse_manager/views/screens/report_page.dart';
+import 'package:expanse_manager/views/screens/signin_page.dart';
 import 'package:expanse_manager/views/screens/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,7 +42,7 @@ class _LandingPageState extends State<LandingPage> {
     return PersistentTabView(
       context,
       screens: [
-        HomePage(),
+        SignInPage(),
         TodoPage(),
         CategoryPage(),
         ReportPage(),
