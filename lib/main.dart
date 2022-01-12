@@ -58,10 +58,11 @@ class _LandingPageState extends State<LandingPage> {
           title: "Todo",
         ),
         PersistentBottomNavBarItem(
-            icon: Icon(Icons.category_rounded), title: "Categories"),
-        PersistentBottomNavBarItem(icon: Icon(Icons.print), title: "Report"),
+            icon: const Icon(Icons.category_rounded), title: "Categories"),
         PersistentBottomNavBarItem(
-            icon: Icon(Icons.info_outline_rounded), title: "About"),
+            icon: const Icon(Icons.print), title: "Report"),
+        PersistentBottomNavBarItem(
+            icon: const Icon(Icons.info_outline_rounded), title: "About"),
       ],
     );
   }
