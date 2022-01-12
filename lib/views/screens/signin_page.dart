@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:expanse_manager/app/controllers/LoginController.dart';
 import 'package:expanse_manager/app/controllers/SigninController.dart';
 import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:expanse_manager/views/widgets/paperfly_loading.dart';
@@ -16,7 +17,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  SigninController controller = Get.put(SigninController());
+  LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class _SignInPageState extends State<SignInPage> {
                           Container(
                             margin: const EdgeInsets.all(16),
                             child: const Text(
-                              "Expanse Manager",
+                              "Expanse Manager | Login",
                               style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.bold),
                             ),
@@ -87,28 +88,32 @@ class _SignInPageState extends State<SignInPage> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 20),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 30,
-                            ),
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      blurRadius: 1,
-                                      spreadRadius: 1,
-                                      color: Colors.blueGrey,
-                                      offset: Offset(1, 1)),
-                                ]),
-                            child: const Text(
-                              "Sign In",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w300,
+                          InkWell(
+                            onTap: () => controller.login(),
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 20),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8,
+                                horizontal: 30,
+                              ),
+                              decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        blurRadius: 1,
+                                        spreadRadius: 1,
+                                        color: Colors.blueGrey,
+                                        offset: Offset(1, 1)),
+                                  ]),
+                              child: const Text(
+                                "Sign In",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300,
+                                ),
                               ),
                             ),
                           ),

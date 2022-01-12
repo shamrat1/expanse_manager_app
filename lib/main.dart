@@ -1,8 +1,10 @@
+import 'package:expanse_manager/app/helpers.dart/Globals.dart';
 import 'package:expanse_manager/views/screens/about.dart';
 import 'package:expanse_manager/views/screens/category_page.dart';
 import 'package:expanse_manager/views/screens/home_page.dart';
 import 'package:expanse_manager/views/screens/report_page.dart';
 import 'package:expanse_manager/views/screens/signin_page.dart';
+import 'package:expanse_manager/views/screens/splash_page.dart';
 import 'package:expanse_manager/views/screens/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LandingPage(),
+      home: SplashPage(),
     );
   }
 }
@@ -42,7 +44,7 @@ class _LandingPageState extends State<LandingPage> {
     return PersistentTabView(
       context,
       screens: [
-        SignInPage(),
+        HomePage(),
         TodoPage(),
         CategoryPage(),
         ReportPage(),
@@ -50,11 +52,11 @@ class _LandingPageState extends State<LandingPage> {
       ],
       items: [
         PersistentBottomNavBarItem(
-          icon: Icon(Icons.home_rounded),
+          icon: const Icon(Icons.home_rounded),
           title: "Home",
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(Icons.checklist),
+          icon: const Icon(Icons.checklist),
           title: "Todo",
         ),
         PersistentBottomNavBarItem(

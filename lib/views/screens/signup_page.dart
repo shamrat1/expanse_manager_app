@@ -1,3 +1,4 @@
+import 'package:expanse_manager/app/controllers/SignUpController.dart';
 import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:expanse_manager/views/widgets/paperfly_loading.dart';
 import 'package:flutter/gestures.dart';
@@ -12,6 +13,8 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  SignUpController controller = Get.put(SignUpController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             margin: const EdgeInsets.all(16),
                             child: const Text(
-                              "Expanse Manager",
+                              "Expanse Manager | Registration",
                               style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.bold),
                             ),
@@ -64,18 +67,25 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             obscureText: true,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
-                                Text(
-                                  "Forgot Password ?",
-                                  style: TextStyle(
-                                    color: Color(0x907e7e7e),
-                                  ),
-                                )
-                              ],
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            controller: controller.passwordController,
+                            decoration: const InputDecoration(
+                              label: Text("Password Confirmation"),
+                              border: OutlineInputBorder(),
+                            ),
+                            obscureText: true,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 20.0),
+                            child: Text(
+                              "By signing up, you are agreed to the Terms & Conditions of Expanse Manager",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0x907e7e7e),
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -98,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       offset: Offset(1, 1)),
                                 ]),
                             child: const Text(
-                              "Sign In",
+                              "Register",
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -117,18 +127,18 @@ class _SignUpPageState extends State<SignUpPage> {
                           // ),
                           RichText(
                             text: TextSpan(
-                              text: "New Here?",
+                              text: "Already Have An Account?",
                               style: const TextStyle(
                                 color: Color(0x707e7e7e),
                               ),
                               children: [
                                 TextSpan(
-                                  text: " Sign Up",
+                                  text: " Login",
                                   style: const TextStyle(
                                     color: Color(0xff7e7e7e),
                                   ),
                                   recognizer: TapGestureRecognizer()
-                                    ..onTap = () => controller.goToSignUpPage(),
+                                    ..onTap = () => controller.goToSignInPage(),
                                 ),
                                 const TextSpan(
                                   text: " Now",
