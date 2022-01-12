@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_charts: ^19.4.41
   persistent_bottom_nav_bar: ^4.0.2
   lottie: ^1.2.1
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:

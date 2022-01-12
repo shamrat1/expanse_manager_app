@@ -7,7 +7,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
 
-    // get monthly overview
+    // get current months overview
     // get recent 5 records
   }
 }
