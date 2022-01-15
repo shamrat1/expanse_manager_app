@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:expanse_manager/app/helpers.dart/Globals.dart';
 import 'package:expanse_manager/views/screens/about.dart';
 import 'package:expanse_manager/views/screens/category_page.dart';
@@ -8,9 +10,12 @@ import 'package:expanse_manager/views/screens/splash_page.dart';
 import 'package:expanse_manager/views/screens/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter(); //init hive
   runApp(const MyApp());
 }
 

@@ -4,22 +4,22 @@ import 'package:expanse_manager/app/helpers.dart/Globals.dart';
 import 'package:expanse_manager/main.dart';
 import 'package:expanse_manager/views/screens/signin_page.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:hive/hive.dart';
 
 class SplashController extends GetxController {
   Rx<bool> loading = false.obs;
   Rx<bool> isAuthenticated = false.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     Timer(Duration(seconds: 3), () => redirect());
   }
 
-  void redirect() {
-    GetStorage box = GetStorage();
-    isAuthenticated(box.read(isauthKey) ?? false);
-    print(box.read(isauthKey));
+  void redirect() async {
+    // var box = await Hive.openBox(hiveBox);
+    var box = await Hive.openBox(hiveBox);
+    isAuthenticated(box.get(isauthKey) ?? false);
     if (isAuthenticated.value) {
       Get.offAll(() => LandingPage());
     } else {

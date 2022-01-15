@@ -8,13 +8,13 @@ import 'package:expanse_manager/main.dart';
 import 'package:expanse_manager/views/screens/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:hive/hive.dart';
 
 class LoginController extends GetxController {
   Rx<bool> loading = false.obs;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late Rx<User> user = User().obs;
+  Rx<User> user = User().obs;
 
   bool _validate() {
     if (!GetUtils.isEmail(emailController.text)) {
@@ -46,15 +46,13 @@ class LoginController extends GetxController {
       var response = await AuthenticationService().signin(data);
 
       if (response.statusCode == 200) {
-        GetStorage box = GetStorage();
+        var box = Hive.box(hiveBox);
         var decoded = response.body;
         var user = userFromJson(decoded);
-        box.write(authUserKey, user);
-        box.write(isauthKey, true);
-        box.write(authToken, user.token!);
-        print(box.read(isauthKey));
-        print(box.read(authUserKey));
-        print(box.read(authToken));
+        box.put(authUserKey, user);
+        box.put(isauthKey, true);
+        box.put(authToken, user.token!);
+
         Get.snackbar("Success", "Hello ${user.name}, Successfully Logged in.");
 
         Get.offAll(LandingPage());
