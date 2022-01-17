@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:expanse_manager/app/models/CategoryResponse.dart';
+
 TransactionResponse transactionResponseFromJson(String str) =>
     TransactionResponse.fromJson(json.decode(str));
 
@@ -111,7 +113,7 @@ class Transaction {
     this.deletedAt,
     this.categoryId,
     this.createdById,
-    this.expenseCategory,
+    this.category,
     this.createdBy,
   });
 
@@ -124,7 +126,7 @@ class Transaction {
   dynamic deletedAt;
   int? categoryId;
   dynamic createdById;
-  ExpenseCategory? expenseCategory;
+  Category? category;
   dynamic createdBy;
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
@@ -141,7 +143,7 @@ class Transaction {
         deletedAt: json["deleted_at"],
         categoryId: json["category_id"],
         createdById: json["created_by_id"],
-        expenseCategory: ExpenseCategory.fromJson(json["expense_category"]),
+        category: Category.fromJson(json["category"]),
         createdBy: json["created_by"],
       );
 
@@ -156,52 +158,7 @@ class Transaction {
         "deleted_at": deletedAt,
         "category_id": categoryId,
         "created_by_id": createdById,
-        "expense_category": expenseCategory!.toJson(),
+        "category": category!.toJson(),
         "created_by": createdBy,
-      };
-}
-
-class ExpenseCategory {
-  ExpenseCategory({
-    this.id,
-    this.name,
-    this.type,
-    this.createdById,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.color,
-  });
-
-  int? id;
-  String? name;
-  String? type;
-  dynamic createdById;
-  dynamic createdAt;
-  dynamic updatedAt;
-  dynamic deletedAt;
-  String? color;
-
-  factory ExpenseCategory.fromJson(Map<String, dynamic> json) =>
-      ExpenseCategory(
-        id: json["id"],
-        name: json["name"],
-        type: json["type"],
-        createdById: json["created_by_id"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
-        deletedAt: json["deleted_at"],
-        color: json["color"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "type": type,
-        "created_by_id": createdById,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-        "deleted_at": deletedAt,
-        "color": color,
       };
 }

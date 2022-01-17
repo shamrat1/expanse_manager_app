@@ -60,7 +60,8 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () =>
+                              controller.gotoNewTransactionPage("income"),
                           child: Container(
                             height: Get.height * 0.06,
                             width: constraint.maxWidth * .50 - 8,
@@ -86,7 +87,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () =>
+                              controller.gotoNewTransactionPage("expense"),
                           child: Container(
                             height: Get.height * 0.06,
                             width: constraint.maxWidth * .50 - 8,
