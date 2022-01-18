@@ -143,7 +143,9 @@ class Transaction {
         deletedAt: json["deleted_at"],
         categoryId: json["category_id"],
         createdById: json["created_by_id"],
-        category: Category.fromJson(json["category"]),
+        category: json['category'] != null
+            ? Category.fromJson(json["category"])
+            : null,
         createdBy: json["created_by"],
       );
 

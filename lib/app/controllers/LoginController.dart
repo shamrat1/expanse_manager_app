@@ -59,6 +59,8 @@ class LoginController extends GetxController {
       } else if (response.statusCode == 422) {
         Get.snackbar("Error", jsonDecode(response.body)["message"]);
       } else {
+        print(response.statusCode);
+        print(response.body);
         Get.snackbar("Error", "Something Went Wrong. Try Again later.");
       }
     }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:expanse_manager/app/controllers/HomeController.dart';
+import 'package:expanse_manager/app/helpers.dart/Globals.dart';
 import 'package:expanse_manager/app/models/CategoryResponse.dart';
 import 'package:expanse_manager/app/services/TransactionCategoryService.dart';
 import 'package:expanse_manager/app/services/TransactionService.dart';
@@ -46,7 +48,7 @@ class TransactionController extends GetxController {
     super.onInit();
     type = Get.arguments;
 
-    selectedDate.value = _getFormattedDate(DateTime.now());
+    selectedDate.value = getFormattedDate(DateTime.now());
     loading(true);
     categories.value =
         await TransactionCategoryService().getTransactionCategory(type);
@@ -58,11 +60,6 @@ class TransactionController extends GetxController {
     // });
   }
 
-  String _getFormattedDate(DateTime dateTime) {
-    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
-    return dateFormat.format(dateTime);
-  }
-
   void save() async {
     if (formKey.currentState!.validate()) {
       var data = {
@@ -71,20 +68,22 @@ class TransactionController extends GetxController {
         "description": descriptionController.text,
         "category_id": selectedCategory.value.id.toString()
       };
-      print(data);
       loading(true);
       var response = await TransactionService()
           .postTransaction(data, income: type == "income");
-      print(response.statusCode);
-      print(response.body);
+
       loading(false);
       if (response.statusCode == 201) {
         Get.snackbar("Success", "New $type added successfully.");
+        HomeController controller = Get.find();
+        controller.getHomeData();
         Get.offUntil(MaterialPageRoute(builder: (ctx) => LandingPage()),
             (route) => false);
       } else if (response.statusCode == 422) {
         Get.snackbar("Warning", response.body);
       } else {
+        print(response.statusCode);
+        print(response.body);
         Get.snackbar(
             "Error", "Something Unexpected Happened. ${response.statusCode}");
       }
@@ -101,7 +100,7 @@ class TransactionController extends GetxController {
     );
 
     if (date != null) {
-      selectedDate.value = _getFormattedDate(date);
+      selectedDate.value = getFormattedDate(date);
     }
   }
 

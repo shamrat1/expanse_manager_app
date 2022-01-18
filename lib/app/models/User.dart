@@ -34,8 +34,12 @@ class User {
         name: json["name"],
         email: json["email"],
         emailVerifiedAt: json["email_verified_at"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] != null
+            ? DateTime.parse(json["created_at"])
+            : null,
+        updatedAt: json["updated_at"] != null
+            ? DateTime.parse(json["updated_at"])
+            : null,
         deletedAt: json["deleted_at"] != null
             ? DateTime.parse(json["deleted_at"])
             : null,

@@ -19,14 +19,15 @@ class _TransactionsPageState extends State<TransactionsPage> {
         child: ListView.builder(
             itemCount: 15,
             itemBuilder: (context, i) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: TransactionItemTile(
-                  type: i % 2 == 0
-                      ? TransactionType.INCOME
-                      : TransactionType.EXPANSE,
-                ),
-              );
+              return Container();
+              // return Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 4),
+              //   child: TransactionItemTile(
+              //     type: i % 2 == 0
+              //         ? TransactionType.INCOME
+              //         : TransactionType.EXPANSE,
+              //   ),
+              // );
             }),
       ),
     );

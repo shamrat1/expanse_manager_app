@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 class AuthenticationService {
   Future<http.Response> signin(Map<String, dynamic> data) {
     var url = rootURL + "login";
-    print(url);
     return http.post(
       Uri.parse(url),
       body: data,

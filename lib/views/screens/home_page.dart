@@ -4,6 +4,7 @@ import 'package:expanse_manager/app/controllers/HomeController.dart';
 import 'package:expanse_manager/views/screens/todo.dart';
 import 'package:expanse_manager/views/screens/transactions_page.dart';
 import 'package:expanse_manager/views/widgets/custom_appbar.dart';
+import 'package:expanse_manager/views/widgets/paperfly_loading.dart';
 import 'package:expanse_manager/views/widgets/transaction_item_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _getChartData();
   }
 
   @override
@@ -37,9 +37,10 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Obx(() {
+          _getChartData();
           if (controller.loading.value) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: const EMLoading(),
             );
           }
           return SingleChildScrollView(
@@ -47,73 +48,91 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Container(
                   height: Get.height * .30,
-                  width: Get.width,
+                  width: Get.width - 50,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.shade300,
+                          offset: Offset(1, 1),
+                          blurRadius: 1,
+                          spreadRadius: 1)
+                    ],
+                  ),
                   // color: Colors.amber,
-                  child: _buildAnimationSplineChart(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: _buildAnimationSplineChart(),
+                  ),
                 ),
                 Container(
                   height: Get.height * .10,
                   width: Get.width,
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: LayoutBuilder(builder: (context, constraint) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () =>
-                              controller.gotoNewTransactionPage("income"),
-                          child: Container(
-                            height: Get.height * 0.06,
-                            width: constraint.maxWidth * .50 - 8,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.lightBlueAccent,
-                                  blurRadius: 3,
-                                  spreadRadius: 1,
-                                  offset: Offset(1, 1),
-                                )
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(Icons.add),
-                                Text("Income"),
-                              ],
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () =>
-                              controller.gotoNewTransactionPage("expense"),
-                          child: Container(
-                            height: Get.height * 0.06,
-                            width: constraint.maxWidth * .50 - 8,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red[500],
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.redAccent,
-                                  blurRadius: 3,
-                                  spreadRadius: 1,
-                                  offset: Offset(1, 1),
-                                )
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(Icons.remove),
-                                Text("Expanse"),
-                              ],
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () =>
+                                controller.gotoNewTransactionPage("income"),
+                            child: Container(
+                              height: Get.height * 0.06,
+                              width: constraint.maxWidth * .50 - 10,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blue,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.lightBlueAccent,
+                                    blurRadius: 3,
+                                    spreadRadius: 1,
+                                    offset: Offset(1, 1),
+                                  )
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(Icons.add),
+                                  Text("Income"),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                          InkWell(
+                            onTap: () =>
+                                controller.gotoNewTransactionPage("expense"),
+                            child: Container(
+                              height: Get.height * 0.06,
+                              width: constraint.maxWidth * .50 - 10,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red[500],
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.redAccent,
+                                    blurRadius: 3,
+                                    spreadRadius: 1,
+                                    offset: Offset(1, 1),
+                                  )
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(Icons.remove),
+                                  Text("Expanse"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   }),
                 ),
@@ -123,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Recent Income and expanses",
+                        "Recent expanses",
                         style: TextStyle(
                           color: Color(0xffdbdbdb),
                           fontSize: 14,
@@ -140,24 +159,29 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
-                  // height: Get.height * .60 - MediaQuery.of(context).padding.top,
-                  width: Get.width,
-                  // color: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      for (var i = 0; i < 4; i++)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: TransactionItemTile(
-                            type: i % 2 == 0
-                                ? TransactionType.INCOME
-                                : TransactionType.EXPANSE,
+                if (controller.homeData.value.recentExpenses != null)
+                  Container(
+                    // height: Get.height * .60 - MediaQuery.of(context).padding.top,
+                    width: Get.width,
+                    // color: Colors.greenAccent,
+                    child: Column(
+                      children: [
+                        for (var i = 0;
+                            i <
+                                controller
+                                    .homeData.value.recentExpenses!.length;
+                            i++)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: TransactionItemTile(
+                              type: TransactionType.EXPANSE,
+                              transaction:
+                                  controller.homeData.value.recentExpenses![i],
+                            ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           );
@@ -173,13 +197,18 @@ class _HomePageState extends State<HomePage> {
       // backgroundColor: Colors.amber,
       title: ChartTitle(text: "Monthly Income Expanse View"),
       primaryXAxis: NumericAxis(
-          majorGridLines: const MajorGridLines(width: 0), isVisible: false),
+        name: "Expenses",
+        majorGridLines: const MajorGridLines(width: 0),
+        isVisible: true,
+      ),
       primaryYAxis: NumericAxis(
+        name: "Income",
         majorTickLines: const MajorTickLines(color: Colors.transparent),
         axisLine: const AxisLine(width: 0),
         minimum: 0,
-        maximum: 10000,
-        isVisible: false,
+        maximum:
+            double.parse(controller.homeData.value.incomeTotal ?? '0') + 10000,
+        isVisible: true,
       ),
 
       // palette: [
@@ -222,33 +251,19 @@ class _HomePageState extends State<HomePage> {
 
   //Get the random data points
   void _getChartData() {
-    var income = 7500;
-    var expanses = [
-      20,
-      30,
-      500,
-      700,
-      163,
-      5,
-      1600,
-      20,
-      30,
-      500,
-      700,
-      163,
-      5,
-      1600
-    ];
-
+    var income = double.parse(controller.homeData.value.incomeTotal ?? '0');
+    var expanses = controller.homeData.value.expenseArray ?? [];
+    print(controller.homeData.value.expenseTotal);
+    print(income);
     _incomeData = <_ChartData>[];
-    var totalExpanse = 0;
+    var totalExpanse = 0.0;
     _expanseData = <_ChartData>[];
 
     for (int i = 0; i < expanses.length; i++) {
-      income = income - expanses[i];
-      totalExpanse += expanses[i];
-      _incomeData!.add(_ChartData(i, income));
-      _expanseData!.add(_ChartData(i, totalExpanse));
+      income = income - double.parse(expanses[i]);
+      totalExpanse += double.parse(expanses[i]);
+      _incomeData!.add(_ChartData(i, income.toInt()));
+      _expanseData!.add(_ChartData(i, totalExpanse.toInt()));
     }
   }
 }

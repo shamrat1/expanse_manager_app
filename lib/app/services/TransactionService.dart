@@ -1,9 +1,19 @@
+import 'package:expanse_manager/app/models/HomeResponse.dart';
 import 'package:expanse_manager/app/models/TransactionResponse.dart';
 import 'package:expanse_manager/app/helpers.dart/Globals.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
 class TransactionService {
+  Future<HomeResponse> getHomeData() async {
+    var url = rootURL + "home";
+    var response = await http.get(Uri.parse(url), headers: await _getHeader());
+    if (response.statusCode == 200) {
+      return homeResponseFromJson(response.body);
+    }
+    throw Exception("Error");
+  }
+
   Future<TransactionResponse> getExpanses({int page = 1}) async {
     var url = rootURL + "expenses?page=$page";
     var response = await http.get(Uri.parse(url), headers: await _getHeader());

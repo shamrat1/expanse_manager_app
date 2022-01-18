@@ -16,6 +16,8 @@ class TransactionCategoryService {
       return List<Category>.from(
           (jsonDecode(response.body)["data"]).map((x) => Category.fromJson(x)));
     }
+    print(response.statusCode);
+    print(response.body);
     throw Exception("Error");
   }
 
