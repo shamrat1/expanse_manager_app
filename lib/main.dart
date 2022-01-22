@@ -14,6 +14,8 @@ import 'package:hive/hive.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'app/themes/appTheme.dart';
+
 void main() async {
   await Hive.initFlutter(); //init hive
   runApp(const MyApp());
@@ -26,10 +28,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: AppTheme.lightTheme,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: SplashPage(),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:expanse_manager/app/models/TransactionResponse.dart';
 
-class TransactionResponse {
-  TransactionResponse({
+class CategoryResponse {
+  CategoryResponse({
     this.currentPage,
     this.categories,
     this.firstPageUrl,
@@ -31,8 +31,8 @@ class TransactionResponse {
   int? to;
   int? total;
 
-  factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
-      TransactionResponse(
+  factory CategoryResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryResponse(
         currentPage: json["current_page"],
         categories:
             List<Category>.from(json["data"].map((x) => Category.fromJson(x))),

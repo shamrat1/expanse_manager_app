@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SubmitButton extends StatelessWidget {
-  const SubmitButton({Key? key, required this.callback}) : super(key: key);
+  const SubmitButton({Key? key, required this.callback, this.title = "Save"})
+      : super(key: key);
   final VoidCallback callback;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class SubmitButton extends StatelessWidget {
               ),
             ]),
         child: Center(
-          child: Text("Save"),
+          child: Text(this.title),
         ),
       ),
     );

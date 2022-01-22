@@ -86,35 +86,6 @@ class _CreateTransactionState extends State<CreateTransaction> {
                                   .toList(),
                               onChanged: (category) =>
                                   controller.setCategory(category!)),
-                          // child: DropdownButton<List<DropdownMenuItem>>(
-                          //   value: controller.selectedCategory?.value.name ??
-                          //       "Select Category",
-                          //   // onTap: () => controller.setDate(),
-                          //   items: controller.dummyCats
-                          //       .map(
-                          //         (e) => DropdownMenuItem(
-                          //           child: Text(e.name!),
-                          //         ),
-                          //       )
-                          //       .toList(),
-                          //   onChanged: (value) {
-                          //     print(value);
-                          //   },
-                          // child: Container(
-                          //   height: 56,
-                          //   width: Get.width - 32,
-                          //   padding: EdgeInsets.only(left: 10),
-                          //   decoration: BoxDecoration(
-                          //     border: Border.all(color: Colors.grey.shade500),
-                          //     borderRadius: BorderRadius.circular(5),
-                          //   ),
-                          //   alignment: Alignment.centerLeft,
-                          //   child: Text(
-                          //     "Entry Date: ${controller.selectedDate.value}",
-                          //     style: TextStyle(color: Colors.black54),
-                          //   ),
-                          // ),
-                          // ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8),
