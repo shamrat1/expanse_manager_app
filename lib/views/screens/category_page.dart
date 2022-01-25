@@ -29,6 +29,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   return InkWell(
                     onTap: () =>
                         controller.getToCreateCategroyPage(index: index),
+                    onLongPress: () => controller.getDeleteConfirmation(index),
                     child: Container(
                       margin: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 8),

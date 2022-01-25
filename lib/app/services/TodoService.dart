@@ -1,25 +1,19 @@
 import 'dart:convert';
 
 import 'package:expanse_manager/app/helpers.dart/Globals.dart';
-import 'package:expanse_manager/app/models/CategoryResponse.dart';
+import 'package:expanse_manager/app/models/TodoResponse.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
-class CategoryService {
-  Future<CategoryResponse> getCategoryResponse(
-      {String? type, int page = 1}) async {
-    var typeStr = "";
-    if (type != null) {
-      typeStr = "type=$type";
-    }
-    var url = rootURL + "categories?page=$page&$typeStr";
+class TodoService {
+  Future<TodoResponse> getTodoResponse({int page = 1}) async {
+    var url = rootURL + "todo?page=$page";
 
     var response = await http.get(Uri.parse(url), headers: await _getHeader());
 
     if (response.statusCode == 200) {
-      return CategoryResponse.fromJson(jsonDecode(response.body));
+      return TodoResponse.fromJson(jsonDecode(response.body));
     }
-
     throw Exception("Error");
   }
 

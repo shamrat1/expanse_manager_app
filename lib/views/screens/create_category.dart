@@ -35,6 +35,7 @@ class _CreateCategoryState extends State<CreateCategory> {
           body: Stack(
             children: [
               Form(
+                key: controller.formKey,
                 child: Container(
                   margin: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 8.0),
@@ -49,6 +50,11 @@ class _CreateCategoryState extends State<CreateCategory> {
                               label: Text("Name"),
                               border: OutlineInputBorder(),
                             ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Enter Category Name";
+                              }
+                            },
                           ),
                         ),
                         Padding(
@@ -58,6 +64,12 @@ class _CreateCategoryState extends State<CreateCategory> {
                                 label: Text("Category Type"),
                                 border: OutlineInputBorder(),
                               ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Select a Category Type";
+                                }
+                              },
+                              value: controller.selectedType.value,
                               items: controller.categoryTypes
                                   .map(
                                     (e) => DropdownMenuItem(

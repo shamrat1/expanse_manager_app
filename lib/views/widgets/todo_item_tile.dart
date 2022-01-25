@@ -1,8 +1,12 @@
+import 'package:expanse_manager/app/extensions/color_extension.dart';
+import 'package:expanse_manager/app/models/TodoResponse.dart';
 import 'package:flutter/material.dart';
 
 class TodoItemTile extends StatelessWidget {
-  const TodoItemTile({Key? key, required this.isCompleted}) : super(key: key);
+  const TodoItemTile({Key? key, required this.isCompleted, required this.todo})
+      : super(key: key);
   final bool isCompleted;
+  final Todo todo;
 
   @override
   Widget build(BuildContext context) {
@@ -16,30 +20,42 @@ class TodoItemTile extends StatelessWidget {
         ),
       ),
       title: Text(
-        "Something",
+        todo.task.toString(),
         style: TextStyle(
           decoration: isCompleted ? TextDecoration.lineThrough : null,
         ),
       ),
-      subtitle: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 3,
-              horizontal: 10,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.amber,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Text(
-              "Cate",
-              style: TextStyle(fontSize: 9),
-            ),
-          ),
-        ],
+      subtitle: todo.categoryId != null
+          ? Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 3,
+                    horizontal: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: todo.category?.color != null
+                        ? HexColor.fromHex(todo.category?.color ?? "ffffff")
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    todo.category?.name ?? "",
+                    style: TextStyle(fontSize: 9),
+                  ),
+                ),
+              ],
+            )
+          : Container(),
+      trailing: IconButton(
+        onPressed: () {},
+        icon: Icon(
+          Icons.check_circle_outline_rounded,
+          color: isCompleted
+              ? Theme.of(context).colorScheme.secondary
+              : Colors.grey,
+        ),
       ),
-      trailing: Icon(Icons.check_circle_outline_rounded),
     );
   }
 }

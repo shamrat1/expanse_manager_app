@@ -12,3 +12,8 @@ String getFormattedDate(DateTime dateTime) {
   DateFormat dateFormat = DateFormat("yyyy-MM-dd");
   return dateFormat.format(dateTime);
 }
+
+String getFormattedDateTime(DateTime dateTime) {
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd hh:mm a");
+  return dateFormat.format(dateTime);
+}
