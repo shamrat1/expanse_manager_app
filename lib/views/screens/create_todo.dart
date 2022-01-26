@@ -2,6 +2,7 @@ import 'package:expanse_manager/app/controllers/TodoController.dart';
 import 'package:expanse_manager/app/models/CategoryResponse.dart';
 import 'package:expanse_manager/views/widgets/custom_appbar.dart';
 import 'package:expanse_manager/views/widgets/paperfly_loading.dart';
+import 'package:expanse_manager/views/widgets/submit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,6 +23,7 @@ class _CreateTodoState extends State<CreateTodo> {
       body: Obx(() => Container(
             padding: const EdgeInsets.all(8),
             child: Stack(
+              alignment: Alignment.center,
               children: [
                 Form(
                   key: controller.formkey,
@@ -96,6 +98,7 @@ class _CreateTodoState extends State<CreateTodo> {
                     ],
                   ),
                 ),
+                Positioned(child: SubmitButton(callback: () => controller.saveTodo(),),bottom: 0,),
                 if (controller.loading.value) EMLoading(),
               ],
             ),

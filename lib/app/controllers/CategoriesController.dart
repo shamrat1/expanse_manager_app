@@ -21,7 +21,7 @@ class CategoriesController extends GetxController {
     "expanse",
     "todo",
   ];
-  Rx<String> selectedType = "".obs;
+  Rx<String> selectedType = "income".obs;
   Rx<String> selectedHexColor = "000000".obs;
   TextEditingController colorController = TextEditingController();
 

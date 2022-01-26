@@ -8,6 +8,7 @@ import 'package:expanse_manager/views/screens/report_page.dart';
 import 'package:expanse_manager/views/screens/signin_page.dart';
 import 'package:expanse_manager/views/screens/splash_page.dart';
 import 'package:expanse_manager/views/screens/todo.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -28,7 +29,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: AppTheme.lightTheme,
+      // theme: AppTheme.lightTheme,
+      // The Mandy red, light theme.
+      theme: FlexThemeData.light(scheme: FlexScheme.red),
+      // The Mandy red, dark theme.
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.deepPurple),
+      // Use dark or light theme based on system setting.
+      themeMode: ThemeMode.system,
       title: 'Flutter Demo',
       home: SplashPage(),
     );

@@ -25,12 +25,15 @@ class TransactionItemTile extends StatelessWidget {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Theme.of(context).colorScheme.secondary,
       ),
+      style: ListTileStyle.drawer,
       shape: RoundedRectangleBorder(
+
         borderRadius: BorderRadius.circular(10),
+
         side: BorderSide(
           color: this.type == TransactionType.EXPANSE
-              ? Colors.red.withOpacity(0.7)
-              : Colors.blue.withOpacity(0.7),
+              ? Colors.red.withOpacity(0.3)
+              : Colors.blue.withOpacity(0.3),
         ),
       ),
       title: Text(transaction.amount.toString()),

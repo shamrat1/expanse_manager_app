@@ -17,19 +17,13 @@ class TodoService {
     throw Exception("Error");
   }
 
-  Future<http.Response> storeCategories(Map<String, String> data,
-      {int? id}) async {
-    print(id);
-    var url = rootURL + "categories" + (id != null ? "/$id" : "");
+  Future<http.Response> storeTodo(Map<String, String> data) async {
+
+    var url = rootURL + "todo";
     print(url);
-    http.Response response;
-    if (id != null) {
-      response = await http.patch(Uri.parse(url),
+
+      var response = await http.post(Uri.parse(url),
           headers: await _getHeader(), body: data);
-    } else {
-      response = await http.post(Uri.parse(url),
-          headers: await _getHeader(), body: data);
-    }
 
     print(response.statusCode);
     return response;

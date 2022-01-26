@@ -15,8 +15,8 @@ class TodoItemTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         side: BorderSide(
           color: isCompleted
-              ? Colors.grey.withOpacity(0.5)
-              : Colors.greenAccent.withOpacity(0.7),
+              ? Colors.grey.withOpacity(0.3)
+              : Colors.greenAccent.withOpacity(0.3),
         ),
       ),
       title: Text(

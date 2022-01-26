@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({Key? key, required this.callback, this.title = "Save"})
@@ -13,6 +14,7 @@ class SubmitButton extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(left: 16, right: 16, bottom: 20),
         height: 50,
+        width: Get.width * .8,
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(10),

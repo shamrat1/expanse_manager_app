@@ -4,6 +4,7 @@ import 'package:expanse_manager/app/models/TodoResponse.dart';
 import 'package:expanse_manager/app/services/CategoryService.dart';
 import 'package:expanse_manager/app/services/TodoService.dart';
 import 'package:expanse_manager/views/screens/create_todo.dart';
+import 'package:expanse_manager/views/screens/todo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,6 +68,38 @@ class TodoController extends GetxController {
   void getTodos({int page = 1}) async {
     todoResponse.value = await TodoService().getTodoResponse(page: page);
     // ignore: invalid_use_of_protected_member
-    todos.value = [...todos.value, ...todoResponse.value.todos!];
+    if(todoResponse.value.currentPage == 1){
+      todos.value = todoResponse.value.todos!;
+    }else{
+      todos.value = [...todos.value, ...todoResponse.value.todos!];
+
+    }
+  }
+
+  void saveTodo() async {
+    if(formkey.currentState!.validate()){
+      Map<String, String> data = {
+        "category_id" : selectedCategory.value.id.toString(),
+        "task" : taskController.text,
+        "note" : noteController.text,
+        "reminder_at" : selectedDateTime.value,
+      };
+      loading(true);
+      var response = await TodoService().storeTodo(data);
+      print(response.statusCode);
+      print(response.body);
+
+      if(response.statusCode == 200){
+        Get.snackbar("Success", "New Todo added successfully.");
+        loading(false);
+        // Get.offUntil(MaterialPageRoute(builder: (ctx) => TodoPage()), (route) => false);
+        getTodos();
+        Navigator.of(Get.context!).pop();
+      }else{
+        loading(false);
+        throw Exception("Error");
+      }
+
+    }
   }
 }

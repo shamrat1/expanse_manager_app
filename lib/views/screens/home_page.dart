@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                               width: constraint.maxWidth * .50 - 10,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.blue,
+                                color: Colors.white,
                                 boxShadow: const [
                                   BoxShadow(
                                     color: Colors.lightBlueAccent,
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                               width: constraint.maxWidth * .50 - 10,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.red[500],
+                                color: Colors.white,
                                 boxShadow: const [
                                   BoxShadow(
                                     color: Colors.redAccent,
