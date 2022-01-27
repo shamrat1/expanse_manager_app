@@ -20,7 +20,7 @@ class _CreateTransactionState extends State<CreateTransaction> {
     return Scaffold(
       appBar: getCustomAppBar(title: "Add ${controller.type.capitalize}"),
       body: Obx(() => Container(
-            color: Colors.grey.shade100,
+            color: Theme.of(context).colorScheme.background,
             child: Form(
               key: controller.formKey,
               child: Stack(
@@ -64,7 +64,7 @@ class _CreateTransactionState extends State<CreateTransaction> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 "Entry Date: ${controller.selectedDate.value}",
-                                style: TextStyle(color: Colors.black54),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ),
                           ),

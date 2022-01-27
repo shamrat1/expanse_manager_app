@@ -20,15 +20,26 @@ class _SplashPageState extends State<SplashPage> {
         () => Container(
           width: Get.width,
           height: Get.height,
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.background,
           child: Stack(
             alignment: Alignment.center,
             children: [
               if (controller.loading.value) EMLoading(),
               EMLoading(),
               Positioned(
-                top: (Get.height / 2) - 100,
-                child: const Text("Expanse Manager"),
+                top: (Get.height / 2) - 140,
+                child: Column(
+                  children: [
+                    Text(
+                      "Expanse Manager",
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    Text(
+                      "Your Personal Micro-manager.",
+                      style: Theme.of(context).textTheme.caption,
+                    )
+                  ],
+                ),
               )
             ],
           ),

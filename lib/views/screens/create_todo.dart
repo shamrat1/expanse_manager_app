@@ -83,7 +83,7 @@ class _CreateTodoState extends State<CreateTodo> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Reminder: ${controller.selectedDateTime.value}",
-                              style: TextStyle(color: Colors.black54),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ),
                         ),

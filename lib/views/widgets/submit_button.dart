@@ -16,7 +16,7 @@ class SubmitButton extends StatelessWidget {
         height: 50,
         width: Get.width * .8,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(
@@ -27,7 +27,13 @@ class SubmitButton extends StatelessWidget {
               ),
             ]),
         child: Center(
-          child: Text(this.title),
+          child: Text(
+            this.title,
+            style: Theme.of(context)
+                .textTheme
+                .button
+                ?.copyWith(color: Colors.white),
+          ),
         ),
       ),
     );
