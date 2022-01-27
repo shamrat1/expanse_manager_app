@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:expanse_manager/app/helpers.dart/Globals.dart';
+import 'package:expanse_manager/app/themes/textTheme.dart';
 import 'package:expanse_manager/views/screens/about.dart';
 import 'package:expanse_manager/views/screens/category_page.dart';
 import 'package:expanse_manager/views/screens/home_page.dart';
@@ -31,12 +32,20 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       // theme: AppTheme.lightTheme,
       // The Mandy red, light theme.
-      theme: FlexThemeData.light(scheme: FlexScheme.red),
+      theme: FlexThemeData.light(
+        scheme: FlexScheme.rosewood,
+        textTheme: myBaseTextTheme,
+      ),
       // The Mandy red, dark theme.
-      darkTheme: FlexThemeData.dark(scheme: FlexScheme.deepPurple),
+      darkTheme: FlexThemeData.dark(
+        scheme: FlexScheme.rosewood,
+        textTheme: myBaseTextTheme,
+      ),
       // Use dark or light theme based on system setting.
       themeMode: ThemeMode.system,
+
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       home: SplashPage(),
     );
   }
@@ -62,22 +71,24 @@ class _LandingPageState extends State<LandingPage> {
         ReportPage(),
         AboutPage(),
       ],
+      navBarStyle: NavBarStyle.style3,
+      backgroundColor: Theme.of(context).colorScheme.background,
       items: [
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.home_rounded),
-          title: "Home",
-        ),
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.checklist),
-          title: "Todo",
-        ),
-        PersistentBottomNavBarItem(
-            icon: const Icon(Icons.category_rounded), title: "Categories"),
-        PersistentBottomNavBarItem(
-            icon: const Icon(Icons.print), title: "Report"),
-        PersistentBottomNavBarItem(
-            icon: const Icon(Icons.info_outline_rounded), title: "About"),
+        _getTabItem(const Icon(Icons.home_rounded), "Home"),
+        _getTabItem(const Icon(Icons.checklist), "Todo"),
+        _getTabItem(const Icon(Icons.category_rounded), "Categories"),
+        _getTabItem(const Icon(Icons.print), "Report"),
+        _getTabItem(const Icon(Icons.info_outline_rounded), "About"),
       ],
+    );
+  }
+
+  PersistentBottomNavBarItem _getTabItem(Icon icon, String title) {
+    return PersistentBottomNavBarItem(
+      icon: icon,
+      title: title,
+      activeColorPrimary: Theme.of(context).colorScheme.primary,
+      activeColorSecondary: Theme.of(context).colorScheme.secondary,
     );
   }
 }

@@ -47,6 +47,12 @@ class _CreateTodoState extends State<CreateTodo> {
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: DropdownButtonFormField<Category>(
+                            validator: (value) {
+                              if (value == null) {
+                                return "Select a Category to continue.";
+                              }
+                            },
+                            // value: controller.selectedCategory.value,
                             decoration: const InputDecoration(
                               label: Text("Category"),
                               border: OutlineInputBorder(),
@@ -98,7 +104,12 @@ class _CreateTodoState extends State<CreateTodo> {
                     ],
                   ),
                 ),
-                Positioned(child: SubmitButton(callback: () => controller.saveTodo(),),bottom: 0,),
+                Positioned(
+                  child: SubmitButton(
+                    callback: () => controller.saveTodo(),
+                  ),
+                  bottom: 0,
+                ),
                 if (controller.loading.value) EMLoading(),
               ],
             ),

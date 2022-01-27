@@ -50,14 +50,16 @@ class _HomePageState extends State<HomePage> {
                   height: Get.height * .30,
                   width: Get.width - 50,
                   decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.grey.shade300,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primaryVariant
+                              .withOpacity(0.3),
                           offset: Offset(1, 1),
-                          blurRadius: 1,
-                          spreadRadius: 1)
+                          blurRadius: 2,
+                          spreadRadius: 2)
                     ],
                   ),
                   // color: Colors.amber,
@@ -85,10 +87,10 @@ class _HomePageState extends State<HomePage> {
                               width: constraint.maxWidth * .50 - 10,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                boxShadow: const [
+                                color: Colors.lightBlueAccent,
+                                boxShadow: [
                                   BoxShadow(
-                                    color: Colors.lightBlueAccent,
+                                    color: Colors.lightBlueAccent.shade100,
                                     blurRadius: 3,
                                     spreadRadius: 1,
                                     offset: Offset(1, 1),
@@ -112,10 +114,10 @@ class _HomePageState extends State<HomePage> {
                               width: constraint.maxWidth * .50 - 10,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                boxShadow: const [
+                                color: Colors.redAccent,
+                                boxShadow: [
                                   BoxShadow(
-                                    color: Colors.redAccent,
+                                    color: Colors.redAccent.shade200,
                                     blurRadius: 3,
                                     spreadRadius: 1,
                                     offset: Offset(1, 1),
@@ -194,7 +196,7 @@ class _HomePageState extends State<HomePage> {
   SfCartesianChart _buildAnimationSplineChart() {
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
-      // backgroundColor: Colors.amber,
+      backgroundColor: Theme.of(context).colorScheme.background,
       title: ChartTitle(text: "Monthly Income Expanse View"),
       primaryXAxis: NumericAxis(
         name: "Expenses",
