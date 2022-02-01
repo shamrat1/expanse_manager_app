@@ -68,7 +68,6 @@ class _LandingPageState extends State<LandingPage> {
         HomePage(),
         TodoPage(),
         CategoryPage(),
-        ReportPage(),
         AboutPage(),
       ],
       navBarStyle: NavBarStyle.style3,
@@ -77,8 +76,7 @@ class _LandingPageState extends State<LandingPage> {
         _getTabItem(const Icon(Icons.home_rounded), "Home"),
         _getTabItem(const Icon(Icons.checklist), "Todo"),
         _getTabItem(const Icon(Icons.category_rounded), "Categories"),
-        _getTabItem(const Icon(Icons.print), "Report"),
-        _getTabItem(const Icon(Icons.info_outline_rounded), "About"),
+        _getTabItem(const Icon(Icons.person), "Profile"),
       ],
     );
   }

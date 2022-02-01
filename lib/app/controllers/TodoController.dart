@@ -66,6 +66,7 @@ class TodoController extends GetxController {
   }
 
   void getTodos({int page = 1}) async {
+    loading(true);
     todoResponse.value = await TodoService().getTodoResponse(page: page);
     // ignore: invalid_use_of_protected_member
     if(todoResponse.value.currentPage == 1){
@@ -74,6 +75,8 @@ class TodoController extends GetxController {
       todos.value = [...todos.value, ...todoResponse.value.todos!];
 
     }
+    loading(false);
+
   }
 
   void saveTodo() async {
