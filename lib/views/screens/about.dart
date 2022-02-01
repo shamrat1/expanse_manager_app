@@ -1,6 +1,8 @@
 import 'package:expanse_manager/app/controllers/AboutPageController.dart';
 import 'package:expanse_manager/views/screens/signin_page.dart';
 import 'package:expanse_manager/views/widgets/custom_appbar.dart';
+import 'package:expanse_manager/views/widgets/paperfly_loading.dart';
+import 'package:expanse_manager/views/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,10 +28,10 @@ class _AboutPageState extends State<AboutPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: Get.height * 0.35,
+                  height: Get.height * 0.10,
                   child: Center(
                     child: Text(
-                      "Hello, User Name",
+                      "Hello"+ (controller.user.value.email != null ? (", "+controller.user.value.email!) : ''),
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -38,7 +40,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 Container(
-                  height: Get.height * .30,
+                  height: Get.height * .45,
                   // decoration: BoxDecoration(
                   //   color: Color(0xffdbdbdb),
                   // ),
@@ -47,86 +49,14 @@ class _AboutPageState extends State<AboutPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         // for (var i = 0; i < 4; i++)
-                        Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Color(0xffdbdbdb)))),
-                          alignment: Alignment.center,
-                          // color: Colors.amber,
-                          child: const Text(
-                            "Change Password",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                            ),
-                          ),
-                          height: Get.height * .06,
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Color(0xffdbdbdb)))),
-                          alignment: Alignment.center,
-                          // color: Colors.amber,
-                          child: const Text(
-                            "Rate Expanse Manager",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                            ),
-                          ),
-                          height: Get.height * .06,
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Color(0xffdbdbdb)))),
-                          alignment: Alignment.center,
-                          // color: Colors.amber,
-                          child: const Text(
-                            "Share",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                            ),
-                          ),
-                          height: Get.height * .06,
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Color(0xffdbdbdb)))),
-                          alignment: Alignment.center,
-                          // color: Colors.amber,
-                          child: const Text(
-                            "Donate",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                            ),
-                          ),
-                          height: Get.height * .06,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.to(const SignInPage());
-                          },
-                          child: Container(
-                            // decoration: BoxDecoration(
-                            //     border: Border(
-                            //         bottom: BorderSide(color: Color(0xffdbdbdb)))),
-                            alignment: Alignment.center,
-                            // color: Colors.amber,
-                            child: const Text(
-                              "Logout",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                              ),
-                            ),
-                            height: Get.height * .06,
-                          ),
-                        ),
+                        SettingItem(onTap: () => print('change'), title: "Change Password"),
+                        SettingItem(onTap: () => print('Rate Expanse Manager'), title: "Rate Expanse Manager"),
+                        SettingItem(onTap: () => controller.changeTheme(), title: "Change Theme"),
+                        SettingItem(onTap: () => print('share'), title: "Share"),
+
+                        SettingItem(onTap: () => print('donate'), title: "Donate"),
+                        SettingItem(onTap: () => controller.logout(), title: "Logout"),
+
                       ],
                     ),
                   ),
@@ -136,6 +66,7 @@ class _AboutPageState extends State<AboutPage> {
               ],
             ),
           ),
+          if(controller.loading.value) EMLoading(),
         ],
       ),
     ));

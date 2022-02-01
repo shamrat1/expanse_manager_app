@@ -26,15 +26,14 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 width: Get.width,
                 height: Get.height,
-                color: Colors.grey.shade100,
                 child: Center(
                   child: FittedBox(
                     child: Container(
                       width: Get.width * 0.9,
                       padding: const EdgeInsets.symmetric(
                           vertical: 25, horizontal: 16),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.background,
                       ),
                       child: Column(
                         children: [
@@ -98,13 +97,14 @@ class _SignUpPageState extends State<SignUpPage> {
                               horizontal: 30,
                             ),
                             decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
+                                color:
+                                Theme.of(context).colorScheme.primary,
                                 borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
                                       blurRadius: 1,
                                       spreadRadius: 1,
-                                      color: Colors.blueGrey,
+                                      color: Theme.of(context).colorScheme.secondary,
                                       offset: Offset(1, 1)),
                                 ]),
                             child: const Text(

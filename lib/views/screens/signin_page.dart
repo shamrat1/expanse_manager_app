@@ -29,15 +29,14 @@ class _SignInPageState extends State<SignInPage> {
               Container(
                 width: Get.width,
                 height: Get.height,
-                color: Colors.grey.shade100,
                 child: Center(
                   child: FittedBox(
                     child: Container(
                       width: Get.width * 0.9,
                       padding: const EdgeInsets.symmetric(
                           vertical: 25, horizontal: 16),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.background,
                       ),
                       child: Column(
                         children: [
@@ -97,20 +96,19 @@ class _SignInPageState extends State<SignInPage> {
                               ),
                               decoration: BoxDecoration(
                                   color:
-                                      Theme.of(context).colorScheme.secondary,
+                                      Theme.of(context).colorScheme.primary,
                                   borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                         blurRadius: 1,
                                         spreadRadius: 1,
-                                        color: Colors.blueGrey,
+                                        color: Theme.of(context).colorScheme.secondary,
                                         offset: Offset(1, 1)),
                                   ]),
                               child: const Text(
                                 "Sign In",
                                 style: TextStyle(
                                   fontSize: 20,
-                                  color: Colors.white,
                                   fontWeight: FontWeight.w300,
                                 ),
                               ),

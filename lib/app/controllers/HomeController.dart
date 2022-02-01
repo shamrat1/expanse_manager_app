@@ -28,39 +28,6 @@ class HomeController extends GetxController {
   }
 
   void gotoNewTransactionPage(String type) async {
-    // var box = await Hive.openBox(hiveBox);
-    // var themeString = box.get(themeKey);
-    // print(themeString);
-    // if (themeString != null) {
-    //   if (themeString == 'dark') {
-    //     box.put(themeKey, 'light');
-    //     Get.changeTheme(FlexThemeData.light(
-    //       scheme: FlexScheme.rosewood,
-    //       textTheme: myBaseTextTheme,
-    //     ));
-    //   } else {
-    //     box.put(themeKey, 'dark');
-    //     Get.changeTheme(FlexThemeData.dark(
-    //       scheme: FlexScheme.rosewood,
-    //       textTheme: myBaseTextTheme,
-    //     ));
-    //   }
-    // } else {
-    //   if (MediaQuery.of(Get.context!).platformBrightness == Brightness.dark) {
-    //     box.put(themeKey, 'light');
-    //     Get.changeTheme(FlexThemeData.light(
-    //       scheme: FlexScheme.rosewood,
-    //       textTheme: myBaseTextTheme,
-    //     ));
-    //   } else {
-    //     box.put(themeKey, 'dark');
-    //     Get.changeTheme(FlexThemeData.dark(
-    //       scheme: FlexScheme.rosewood,
-    //       textTheme: myBaseTextTheme,
-    //     ));
-    //   }
-    // }
-
     Get.to(() => CreateTransaction(), arguments: type);
   }
 }

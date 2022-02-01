@@ -47,7 +47,6 @@ class _MyAppState extends State<MyApp> {
           theme = ThemeMode.system;
         });
       }
-      print(theme);
     });
   }
 
