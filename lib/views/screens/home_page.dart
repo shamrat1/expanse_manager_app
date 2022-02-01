@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -255,16 +254,14 @@ class _HomePageState extends State<HomePage> {
   void _getChartData() {
     var income = double.parse(controller.homeData.value.incomeTotal ?? '0');
     var expanses = controller.homeData.value.expenseArray ?? [];
-    print(controller.homeData.value.expenseTotal);
-    print(income);
     _incomeData = <_ChartData>[];
     var totalExpanse = 0.0;
     _expanseData = <_ChartData>[];
 
     for (int i = 0; i < expanses.length; i++) {
-      income = income - double.parse(expanses[i]);
       totalExpanse += double.parse(expanses[i]);
       _incomeData!.add(_ChartData(i, income.toInt()));
+      income -= double.parse(expanses[i]);
       _expanseData!.add(_ChartData(i, totalExpanse.toInt()));
     }
   }

@@ -23,10 +23,34 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  ThemeMode? theme;
+  @override
+  void initState() {
+    super.initState();
+    Hive.openBox(hiveBox).then((value) {
+      var themeString = value.get(themeKey);
+      if (themeString != null) {
+        setState(() {
+          theme = themeString == 'dark' ? ThemeMode.dark : ThemeMode.light;
+        });
+      } else {
+        setState(() {
+          theme = ThemeMode.system;
+        });
+      }
+      print(theme);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -42,7 +66,7 @@ class MyApp extends StatelessWidget {
         textTheme: myBaseTextTheme,
       ),
       // Use dark or light theme based on system setting.
-      themeMode: ThemeMode.system,
+      themeMode: theme != null ? theme! : ThemeMode.system,
 
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
