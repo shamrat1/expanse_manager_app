@@ -49,6 +49,16 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 20,
                           ),
                           TextFormField(
+                            controller: controller.nameController,
+                            decoration: const InputDecoration(
+                              label: Text("Name"),
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
                             controller: controller.emailController,
                             decoration: const InputDecoration(
                               label: Text("Email"),
@@ -70,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 20,
                           ),
                           TextFormField(
-                            controller: controller.passwordController,
+                            controller: controller.passwordConfirmationController,
                             decoration: const InputDecoration(
                               label: Text("Password Confirmation"),
                               border: OutlineInputBorder(),
@@ -90,29 +100,34 @@ class _SignUpPageState extends State<SignUpPage> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 20),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 30,
-                            ),
-                            decoration: BoxDecoration(
-                                color:
-                                Theme.of(context).colorScheme.primary,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 1,
-                                      spreadRadius: 1,
-                                      color: Theme.of(context).colorScheme.secondary,
-                                      offset: Offset(1, 1)),
-                                ]),
-                            child: const Text(
-                              "Register",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w300,
+                          InkWell(
+                            onTap: (){
+                              controller.signup();
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 20),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8,
+                                horizontal: 30,
+                              ),
+                              decoration: BoxDecoration(
+                                  color:
+                                  Theme.of(context).colorScheme.primary,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 1,
+                                        spreadRadius: 1,
+                                        color: Theme.of(context).colorScheme.secondary,
+                                        offset: Offset(1, 1)),
+                                  ]),
+                              child: const Text(
+                                "Register",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300,
+                                ),
                               ),
                             ),
                           ),
