@@ -1,25 +1,24 @@
-
 import 'package:expanse_manager/app/helpers.dart/Globals.dart';
 import 'package:expanse_manager/app/models/User.dart';
 import 'package:expanse_manager/app/themes/textTheme.dart';
-import 'package:expanse_manager/views/screens/signin_page.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-class AboutPageController extends GetxController{
-Rx<User> user = User().obs;
-Rx<bool> loading = false.obs;
+import '../../views/screens/splash_page.dart';
+
+class AboutPageController extends GetxController {
+  Rx<User> user = User().obs;
+  Rx<bool> loading = false.obs;
 
   @override
   void onInit() async {
     super.onInit();
     loading(true);
     var box = await Hive.openBox(hiveBox);
-    if(box.get(authUserKey) != null){
+    if (box.get(authUserKey) != null) {
       user.value = box.get(authUserKey);
-
     }
     loading(false);
   }
@@ -40,10 +39,9 @@ Rx<bool> loading = false.obs;
         _changeToDark(box);
       }
     }
-
   }
 
-  void _changeToDark(Box box){
+  void _changeToDark(Box box) {
     print("set to dark");
     box.put(themeKey, 'dark');
     Get.changeTheme(FlexThemeData.dark(
@@ -52,7 +50,7 @@ Rx<bool> loading = false.obs;
     ));
   }
 
-  void _changeToLight(Box box){
+  void _changeToLight(Box box) {
     print("set to light");
     box.put(themeKey, 'light');
     Get.changeTheme(FlexThemeData.light(
@@ -60,6 +58,7 @@ Rx<bool> loading = false.obs;
       textTheme: myBaseTextTheme,
     ));
   }
+
   void logout() async {
     loading(true);
     var box = await Hive.openBox(hiveBox);
@@ -67,6 +66,6 @@ Rx<bool> loading = false.obs;
     box.delete(isauthKey);
     box.delete(authToken);
     loading(false);
-    Get.to(const SignInPage());
+    Get.offAll(const SplashPage());
   }
 }
