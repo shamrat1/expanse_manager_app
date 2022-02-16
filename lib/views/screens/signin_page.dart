@@ -43,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
                           Container(
                             margin: const EdgeInsets.all(16),
                             child: const Text(
-                              "Expanse Manager | Login",
+                              "Expense Manager | Login",
                               style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.bold),
                             ),
@@ -95,14 +95,15 @@ class _SignInPageState extends State<SignInPage> {
                                 horizontal: 30,
                               ),
                               decoration: BoxDecoration(
-                                  color:
-                                      Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: [
                                     BoxShadow(
                                         blurRadius: 1,
                                         spreadRadius: 1,
-                                        color: Theme.of(context).colorScheme.secondary,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         offset: Offset(1, 1)),
                                   ]),
                               child: const Text(

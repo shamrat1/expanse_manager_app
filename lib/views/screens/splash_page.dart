@@ -31,11 +31,11 @@ class _SplashPageState extends State<SplashPage> {
                 child: Column(
                   children: [
                     Text(
-                      "Expanse Manager",
+                      "Expense Manager",
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     Text(
-                      "Your Personal Micro-manager.",
+                      "Your Personal Micro Finance Manager",
                       style: Theme.of(context).textTheme.caption,
                     )
                   ],

@@ -40,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           Container(
                             margin: const EdgeInsets.all(16),
                             child: const Text(
-                              "Expanse Manager | Registration",
+                              "Expense Manager | Registration",
                               style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.bold),
                             ),
@@ -80,7 +80,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 20,
                           ),
                           TextFormField(
-                            controller: controller.passwordConfirmationController,
+                            controller:
+                                controller.passwordConfirmationController,
                             decoration: const InputDecoration(
                               label: Text("Password Confirmation"),
                               border: OutlineInputBorder(),
@@ -101,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               controller.signup();
                             },
                             child: Container(
@@ -111,14 +112,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                 horizontal: 30,
                               ),
                               decoration: BoxDecoration(
-                                  color:
-                                  Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: [
                                     BoxShadow(
                                         blurRadius: 1,
                                         spreadRadius: 1,
-                                        color: Theme.of(context).colorScheme.secondary,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         offset: Offset(1, 1)),
                                   ]),
                               child: const Text(

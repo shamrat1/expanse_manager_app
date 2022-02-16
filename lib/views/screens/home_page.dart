@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getCustomAppBar(title: "Expanse Manager"),
+      appBar: getCustomAppBar(title: "Expense Manager"),
       body: Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                   Icon(Icons.remove),
-                                  Text("Expanse"),
+                                  Text("Expense"),
                                 ],
                               ),
                             ),
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Recent expanses",
+                        "Recent expenses",
                         style: TextStyle(
                           color: Color(0xffdbdbdb),
                           fontSize: 14,
@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> {
     return SfCartesianChart(
       plotAreaBorderWidth: 0,
       backgroundColor: Theme.of(context).colorScheme.background,
-      title: ChartTitle(text: "Monthly Income Expanse View"),
+      title: ChartTitle(text: "Monthly Income Expense View"),
       primaryXAxis: NumericAxis(
         name: "Expenses",
         majorGridLines: const MajorGridLines(width: 0),
