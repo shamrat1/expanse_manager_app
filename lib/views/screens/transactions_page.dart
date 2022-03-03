@@ -18,7 +18,11 @@ class _TransactionsPageState extends State<TransactionsPage> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          appBar: getCustomAppBar(title: "Transactions"),
+          appBar: getCustomAppBar(
+              title: "Transactions",
+              rightIconButton: IconButton(
+                  onPressed: () => controller.printPDF(),
+                  icon: const Icon(Icons.print))),
           floatingActionButton: FloatingActionButton(
             onPressed: () => controller.getAllTransactions(controller.type),
             child: const Icon(Icons.add),

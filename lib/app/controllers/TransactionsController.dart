@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class TransactionsController extends GetxController
     with GetTickerProviderStateMixin {
   TabController? tabController;
-  List<Tab> tabs = [Tab(text: "Expense"), Tab(text: "Expense")];
+  List<Tab> tabs = const [Tab(text: "Expense"), Tab(text: "Expense")];
 
   RxBool loading = false.obs;
   RxList<Transaction> expenses = <Transaction>[].obs;
@@ -24,6 +24,8 @@ class TransactionsController extends GetxController
     });
     getAllTransactions("expense");
   }
+
+  void printPDF() {}
 
   void getAllTransactions(String type) async {
     // if (type == "expense") {
