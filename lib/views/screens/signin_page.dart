@@ -27,8 +27,8 @@ class _SignInPageState extends State<SignInPage> {
           child: Stack(
             children: [
               Container(
-                width: Get.width,
-                height: Get.height,
+                // width: Get.width,
+                // height: Get.height,
                 child: Center(
                   child: FittedBox(
                     child: Container(
