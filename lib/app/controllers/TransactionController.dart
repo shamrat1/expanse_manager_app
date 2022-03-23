@@ -77,6 +77,10 @@ class TransactionController extends GetxController {
         Get.snackbar("Success", "New $type added successfully.");
         HomeController controller = Get.find();
         controller.getHomeData();
+        amountController.text = "";
+        descriptionController.text = "";
+        categoryController.text = "";
+        entryDateController.text = "";
         Get.offUntil(MaterialPageRoute(builder: (ctx) => LandingPage()),
             (route) => false);
       } else if (response.statusCode == 422) {
@@ -95,8 +99,8 @@ class TransactionController extends GetxController {
     var date = await showDatePicker(
       context: Get.context!,
       initialDate: now,
-      firstDate: now.subtract(Duration(days: 60)),
-      lastDate: now.add(Duration(days: 60)),
+      firstDate: now.subtract(const Duration(days: 60)),
+      lastDate: now.add(const Duration(days: 60)),
     );
 
     if (date != null) {

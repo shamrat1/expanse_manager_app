@@ -29,6 +29,8 @@ class TransactionService {
     if (response.statusCode == 200) {
       return transactionResponseFromJson(response.body);
     }
+    print(response.statusCode);
+    print(response.body);
     throw Exception("Error");
   }
 
