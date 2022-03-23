@@ -6,6 +6,7 @@ var isauthKey = 'isAuthenticated';
 var authToken = 'auth-token';
 var hiveBox = 'app';
 var themeKey = 'themeKey';
+var applicationName = "Expense Manager";
 
 String getFormattedDate(DateTime dateTime) {
   DateFormat dateFormat = DateFormat("yyyy-MM-dd");
