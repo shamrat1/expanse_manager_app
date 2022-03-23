@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "907360933367",
+    "project_id": "expense-76ade",
+    "storage_bucket": "expense-76ade.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907360933367:android:7243001cd49b71c43ccaf2",
+        "android_client_info": {
+          "package_name": "com.expanse_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907360933367-t9hg8mt3orl3jnk26a4qa3pl6vjjlf2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwi6iUMSmR6W4JAGS5g_BUtr2xcMxHJk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907360933367-t9hg8mt3orl3jnk26a4qa3pl6vjjlf2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

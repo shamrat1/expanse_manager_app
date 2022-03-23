@@ -1,4 +1,4 @@
-package com.example.expanse_manager
+package com.expanse_manager
 
 import io.flutter.embedding.android.FlutterActivity
 
